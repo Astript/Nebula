@@ -1,104 +1,53 @@
-import * as React from "react";
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import MuiDrawer from "@mui/material/Drawer";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import Container from "@mui/material/Container";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import Copyright from "./Copyright";
-import { blueGrey } from "@mui/material/colors";
-import Header from "./Header";
-import Mermaid from "./Mermaid";
-const drawerWidth: number = 240;
+import Grid from "@mui/material/Grid";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+} from "@mui/material";
 
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  "& .MuiDrawer-paper": {
-    position: "relative",
-    whiteSpace: "nowrap",
-    width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    boxSizing: "border-box",
-    ...(!open && {
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      width: theme.spacing(7),
-      [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(9),
-      },
-    }),
-  },
-}));
+type Content = string;
 
-const mdTheme = createTheme({
-  palette: {
-    primary: {
-      main: blueGrey[500],
-    },
-  },
-});
-
-function DashboardContent() {
-  const [open, setOpen] = React.useState(true);
-
+const DashboardContent = ({ contents }: { contents: Content[] }) => {
   return (
-    <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <Header open={open} setOpen={setOpen} />
-        <Drawer variant="permanent" open={open}>
-          <Toolbar
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              px: [1],
-            }}
-          >
-            <IconButton onClick={() => setOpen(!open)}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </Toolbar>
-          <Divider />
-          <List component="nav">
-            <Divider sx={{ my: 1 }} />
-          </List>
-        </Drawer>
-        <Box
-          component="main"
-          sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            height: "100vh",
-            overflow: "auto",
-          }}
-        >
-          <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <h2>mermaid </h2>
-            <Mermaid />
-            <Copyright sx={{ pt: 4 }} />
-          </Container>
-        </Box>
-      </Box>
-    </ThemeProvider>
+    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      {contents.map((x) => {
+        return (
+          <Grid item xs={6}>
+            <Card sx={{ minWidth: 275 }} variant="outlined">
+              <CardContent>
+                <Typography
+                  sx={{ fontSize: 14 }}
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  UUOUOUOUOU
+                </Typography>
+                <Typography variant="h5" component="div">
+                  {x}
+                </Typography>
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  uouoou
+                </Typography>
+                <Typography variant="body2">
+                  uouououououoo.
+                  <br />
+                  {'"a benevolent smile"'}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small">Learn More</Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        );
+      })}
+    </Grid>
   );
-}
+};
 
 export default function Dashboard() {
-  return <DashboardContent />;
+  const contents = ["Base64", "HTML Decode", "Json Fomatter", "jdsfj", "fdsf"];
+  return <DashboardContent contents={contents} />;
 }

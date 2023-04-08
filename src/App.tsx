@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import Dashboard from "./components/Dashboard";
+import { Routes, Route } from "react-router-dom";
+import Mermaid from "./pages/Mermaid";
+import Frame from "./components/Frame";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -12,9 +15,12 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <Dashboard />
-    </div>
+    <Frame>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/mermaid" element={<Mermaid />} />
+      </Routes>
+    </Frame>
   );
 }
 
