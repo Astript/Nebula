@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "uo-portal",
+    "productName": "nebula",
     "version": "0.0.0"
   },
   "tauri": {
