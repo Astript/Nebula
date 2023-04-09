@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "nebula",
+    "productName": "Nebula",
     "version": "0.0.0"
   },
   "tauri": {
@@ -40,7 +40,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "nebula",
+        "title": "Nebula",
         "width": 800,
         "height": 600
       }
