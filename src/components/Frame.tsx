@@ -10,14 +10,6 @@ import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { blueGrey } from "@mui/material/colors";
 import Header from "./Header";
-import Grid from "@mui/material/Grid";
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Typography,
-} from "@mui/material";
 const drawerWidth: number = 240;
 
 const Drawer = styled(MuiDrawer, {

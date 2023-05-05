@@ -4,17 +4,18 @@ import {
   Card,
   CardActions,
   CardContent,
+  Link,
   Typography,
 } from "@mui/material";
+import { useRouter } from "next/router";
 
-type Content = string;
-
-const DashboardContent = ({ contents }: { contents: Content[] }) => {
+const DashboardContent = ({ works }: { works: Work[] }) => {
+  const router = useRouter();
   return (
     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-      {contents.map((x) => {
+      {works.map((x, id) => {
         return (
-          <Grid item xs={6}>
+          <Grid key={id} item xs={6}>
             <Card sx={{ minWidth: 275 }} variant="outlined">
               <CardContent>
                 <Typography
@@ -22,13 +23,13 @@ const DashboardContent = ({ contents }: { contents: Content[] }) => {
                   color="text.secondary"
                   gutterBottom
                 >
-                  UUOUOUOUOU
+                  {x.description}
                 </Typography>
                 <Typography variant="h5" component="div">
-                  {x}
+                  {x.name}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  uouoou
+                  {x.description}
                 </Typography>
                 <Typography variant="body2">
                   uouououououoo.
@@ -37,7 +38,9 @@ const DashboardContent = ({ contents }: { contents: Content[] }) => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Learn More</Button>
+                <Button size="small" onClick={() => router.push(x.path)}>
+                  Go
+                </Button>
               </CardActions>
             </Card>
           </Grid>
@@ -47,7 +50,19 @@ const DashboardContent = ({ contents }: { contents: Content[] }) => {
   );
 };
 
+export type Work = {
+  name: string;
+  path: string;
+  description: string;
+};
+
 export default function Dashboard() {
-  const contents = ["Base64", "HTML Decode", "Json Fomatter", "jdsfj", "fdsf"];
-  return <DashboardContent contents={contents} />;
+  const base64: Work = {
+    name: "Base64",
+    path: "./base64",
+    description: "base64 decode and encode",
+  };
+
+  const works: Work[] = [base64];
+  return <DashboardContent works={works} />;
 }
